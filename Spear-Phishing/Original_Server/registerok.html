@@ -1,0 +1,40 @@
+<?
+
+#####################
+## DB Connect info ##
+#####################
+include "__dbconnect.php";
+$TBNAME = "member";
+
+#################
+## Query  Run  ##
+#################
+
+$userid    = $_POST['userid'];
+$userpw    = $_POST['userpw'];
+$username  = $_POST['username'];
+$useremail = $_POST['useremail'];
+
+$http_referer = base64_decode($_POST['http_referer']);
+
+$query = "INSERT INTO $TBNAME VALUES(
+          NULL, '$userid', password('$userpw'), '$username','$useremail',now())";
+
+# resource mysql_query(Query, Connection Info)
+$result = mysqli_query($connect, $query);
+
+#####################
+## mysql closed    ##
+#####################
+mysqli_close($connect);
+
+#################
+## Page Move   ##
+#################
+
+?>
+
+<script language=javascript>
+    alert('Register Complete !');
+    window.close();
+</script>

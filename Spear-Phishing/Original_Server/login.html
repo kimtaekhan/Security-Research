@@ -1,0 +1,42 @@
+<!--
+	FILE TYPE : HTML
+	CREATE BY KTH
+-->
+
+<?php
+session_start();
+?>
+
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+
+<head>
+	<title> KTH HOME </title>
+
+<style>
+	#copyright {
+				position: center;
+				font-size: medium;
+				font-weight: bold;
+				margin: 3px;
+				text-align: center;
+	}
+</style>
+</head>
+<body>
+   <tr>
+	 <td width=250> <? include("login_content.html"); ?> </td>
+     <td> 
+	 <?php
+  	 $phpself_page = $_SERVER['PHP_SELF'];
+     $requesturi_page = $_SERVER['REQUEST_URI'];
+	 ?>
+	</tr>
+
+	<div id="copyright">
+		Copyright &#169; KimTaekHan
+	</div>
+</body>
+
+</html>

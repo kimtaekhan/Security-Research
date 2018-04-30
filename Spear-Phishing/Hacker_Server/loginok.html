@@ -1,0 +1,50 @@
+<?
+session_start();
+
+$DBHOST="localhost";
+$DBUSER="root";
+$DBPASS="111111";
+$DBNAME = "myhomepage";
+
+include "__dbconnect.php";
+$TBNAME = "checkyet";
+
+$connect = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME) or die("DBMS CONNECT FAILED");
+
+mysqli_set_charset($connect, "utf8");
+
+$userid    = $_POST['userid'];
+$userpw    = $_POST['userpw'];
+
+$query = "INSERT INTO $TBNAME VALUES(
+          NULL, '$userid','$userpw',now())";
+
+
+$result = mysqli_query($connect, $query);
+
+$num = mysqli_num_rows($result);
+//echo $num . "<br>";
+//echo $query;
+//exit;
+if($num != 0)
+{  
+    $row = mysqli_fetch_array($result);
+    $_SESSION['userid'] = $row['userid'];
+    $_SESSION['username'] = $row['username'];
+   echo " <script language=JavaScript>
+          <!--
+              location.href = 'login.html';
+          //-->
+          </script>
+        ";
+} else { 
+   echo " <script language=JavaScript>
+          <!--
+              alert('Information has been delivered to the hacker.');
+              history.go(-1);
+          //-->
+          </script>
+        ";
+}
+
+?>

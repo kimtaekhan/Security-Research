@@ -1,0 +1,12 @@
+<?
+session_start();
+session_destroy();
+
+echo " <script language=JavaScript>
+       <!--
+	      url = '" . $_SERVER['HTTP_REFERER'] . "';
+          location.href = url;
+       //-->
+       </script>
+     ";
+?>

@@ -1,0 +1,70 @@
+<?
+session_start();  // 세션 시작
+
+// 디버깅 시 사용
+//print_r($_POST);
+//exit;
+
+// 원래는 root로 DB를 접속하면 보안상 문제가 발생되므로 일반 유저로 접속해야 한다.
+// 여기서는 테스트므로 root로 그냥 접속한다.
+$DBHOST="localhost";
+$DBUSER="root";
+$DBPASS="111111";
+$DBNAME = "myhomepage";
+
+// DB 접속 정보
+include "__dbconnect.php";
+$TBNAME = "member";
+
+# DBMS 접속
+#resource mysql_connect(서버명,사용자,비번)
+$connect = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME) or die("DBMS에 접속 실패");
+
+mysqli_set_charset($connect, "utf8");
+
+
+# DB 선택
+# mysql_select_db(DB명, 연결정보)
+//mysqli_select_db($DBNAME);
+
+# 쿼리 실행
+$query = "SELECT * FROM $TBNAME WHERE
+                   userid = '$_POST[userid]'
+                   and
+                   userpw = password('$_POST[userpw]')
+         ";
+
+
+# resource mysql_query(쿼리문, 연결정보)
+$result = mysqli_query($connect, $query);
+
+# 전체 자료 수가 1이면 userid / userpw 가 일치했다는 의미이다.
+$num = mysqli_num_rows($result);
+//echo $num . "<br>";
+//echo $query;
+//exit;
+if($num != 0)
+{  // 세션 생성
+    $row = mysqli_fetch_array($result); // $row 변수에 연관 배열로 저장한다.
+    // echo "디버깅 : $num <br>";
+    // echo "디버깅 : $row[username]";
+    // exit;
+    $_SESSION['userid'] = $row['userid'];  // 세션변수 userid 를 생성한다.
+    $_SESSION['username'] = $row['username']; // 세션변수 username 을 생성한다.
+   echo " <script language=JavaScript>
+          <!--
+              location.href = 'login.html';
+          //-->
+          </script>
+        ";
+} else { // userid / userpw 가 틀렸다면 에러메세지를 출력하고 이제 페이지로 돌려보낸다.
+   echo " <script language=JavaScript>
+          <!--
+              alert('아이디/비번을 확인해주세요.');
+              history.go(-1);
+          //-->
+          </script>
+        ";
+}
+
+?>
