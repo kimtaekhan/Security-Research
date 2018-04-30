@@ -29,7 +29,7 @@ echo -ne "\033[1;34m
 echo -ne "\033[1;34m\tInput Real Server IP -> \033[1;m \033[1;31m->\033[1;m"
 read -p " " serverip
 
-# should be used your mysql ID and Password for root and table name !
+# should be used your mysql ID and Password for root and DB name !
 mysql -uroot -p111111 myhomepage -e "select * from checkyet" > checklist.txt
 awk '{print $1}' checklist.txt > usernumber_list.txt
 awk '{print $2}' checklist.txt > userid_list.txt
