@@ -1,0 +1,110 @@
+<?
+
+##################
+## DB 접속 정보 ##
+################## 
+include "__dbconnect.php";
+$TBNAME = "member";
+
+#################
+## 쿼리문 실행 ##
+#################
+/****************************************************
+ * SELECT 형식 : 
+ *
+ * SELECT * FROM member ORDER BY no DESC;
+ *
+ * member 테이블 구조;
+ * +----------+-------------+------+-----+---------+----------------+
+ * | Field    | Type        | Null | Key | Default | Extra          |
+ * +----------+-------------+------+-----+---------+----------------+
+ * | id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+ * | userid   | varchar(30) | NO   | UNI | NULL    |                |
+ * | userpw   | varchar(41) | NO   |     | NULL    |                |
+ * | username | varchar(30) | NO   |     | NULL    |                |
+ * | email    | varchar(50) | NO   |     | NULL    |                |
+ * | date     | datetime    | YES  |     | NULL    |                |
+ * +----------+-------------+------+-----+---------+----------------+
+ *
+ ****************************************************/
+
+if(isset($_GET['search_value'])) // 검색 버튼을 눌렀을 경우
+{
+    $search_ine   = $_GET['search_ine'];
+    $search_value = $_GET['search_value'];
+	$query = "SELECT * FROM $TBNAME WHERE $search_ine like 
+	            '%$search_value%'";
+} else 
+    $query = "SELECT * FROM $TBNAME ORDER BY id DESC";
+
+# resource mysqli_query(쿼리문, 연결정보)
+$result = mysqli_query($connect, $query);
+
+# 전체 자료 수
+$number = mysqli_num_rows($result);
+?>
+
+<br>
+<table align=center border=1 cellpadding=5 cellspacing=0 width=580>
+<tr align=center>
+  <td> 번호 </td> <td> 아이디 </td> 
+  <td> 이름 </td> <td> 이메일 </td> <td> 가입일 </td>
+  <td> 수정 </td> <td> 삭제   </td> <td> 중지 </td>
+</tr>
+
+<?
+// 전체 자료의 수만큼 반복해서 자료를 출력한다.
+// read.html?no=3&tb=bbs1
+  while($number)
+{
+    $row       = mysqli_fetch_array($result);
+
+    $no        = $row['id'];                // 멤버번호
+	$userid    = $row['userid'];            // 사용자 아이디
+	$username  = $row['username'];          // 사용자 이름
+    $useremail = $row['email'];             // 사용자 이메일
+	$reg_date  = substr($row['date'],2,8);  // 가입날짜
+
+	# 데이터 가공 및 출력
+    echo "<tr align=center>
+           <td> $number    </td>
+           <td> $userid    </td>
+           <td> $username  </td>
+           <td> $useremail </td>
+           <td> $reg_date  </td>
+           <td> <a href=adm_memedit.html?id=$no>E</a></td>
+           <td> D          </td>
+           <td> S          </td>
+         </tr>";
+
+    $number--;
+}
+?>
+
+<tr align=center >
+<td colspan=8> 
+<a href="adm_memlist.html">회원목록</a> | 
+<a href="Javascript:alert('준비중')">회원가입</a> <p>
+
+<?
+if(isset($_GET['search_value']))
+{
+    echo $_GET['search_value'] . " 검색 결과입니다.";
+}
+?>
+
+<form method=GET action=<?=$_SERVER['PHP_SELF']?>>
+
+  <select name=search_ine>
+   <option value=userid>아이디</option>
+   <option value=username>이름</option>
+   <option value=email>이메일</option>
+  </script>
+
+  <input type=text name=search_value> 
+  <input type=submit value=검색> 
+</form>
+</td>
+</tr>
+
+</table>

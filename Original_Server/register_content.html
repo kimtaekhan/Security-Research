@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<style>
+ input[type=button]{
+    background-color: #0cb7f5;
+    padding: 8px 15px;
+    border-radius: 2px;
+    /* border-bottom: 3px solid #0cb7f5; */
+    color: #FFF;
+    font-weight: 60px;
+    border: 0;
+    border-bottom: 3px solid #049ce4;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: arial;
+    margin: 5px 0 0 0}
+
+input[type=submit]{
+    background-color: #0cb7f5;
+    padding: 8px 15px;
+    border-radius: 2px;
+    /* border-bottom: 3px solid #0cb7f5; */
+    color: #FFF;
+    font-weight: 600px;
+    border: 0;
+    border-bottom: 3px solid #049ce4;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: arial;
+    margin: 5px 0 0 0}
+
+.fonts
+{
+	font-size: 16pt;
+	height: 24px;
+}
+
+</style>
+</head>
+<body>
+
+<script language=JavaScript>
+
+function UseridCheck()
+{
+    /*
+	 *  open("파일명", "창이름", "속성");
+	 *
+	 */
+    open("useridcheck.html", "UseridCheck", "width=500,height=300;");
+}
+</script>
+
+<br><br><br><br><br><br><table align=left border=0 cellpadding=5 cellspacing=0 width=1000>
+<tr> <td>
+<span
+style="
+font-weight: bold;  
+font-size: 3em;
+line-height: 1.0em;  
+color: navy;
+font-family: arial;
+">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가입
+</span>
+</td></tr>
+</table>
+
+<form method=POST action=registerok.html>
+<br><br><br><br><table align=center border=0 cellpadding=5 cellspacing=0 width=1000>
+
+<tr> <td>
+<span
+style="
+font-weight: bold;  
+font-size: 1.5em;
+line-height: 1.0em;  
+color: navy;
+font-family: arial;
+">
+아이디
+</span>
+</td></tr>  
+     <tr><td> <input type=text class="fonts" name=userid size=50> 
+		<input type=button onClick="UseridCheck()"value=중복확인>
+     </td> </tr>
+<tr> <td>
+<span
+style="
+font-weight: bold;  
+font-size: 1.5em;
+line-height: 1.0em;  
+color: navy;
+font-family: arial;
+">
+비밀번호
+</td></tr>
+<tr><td> <input type=password class="fonts" name=userpw size=50> </td> </tr>
+<tr> <td>
+<span
+style="
+font-weight: bold;  
+font-size: 1.5em;
+line-height: 1.0em;  
+color: navy;
+font-family: arial;
+">
+이름
+</td></tr>
+<tr><td> <input type=text class="fonts" name=username size=50> </td> </tr>
+<tr> <td>
+<span
+style="
+font-weight: bold;  
+font-size: 1.5em;
+line-height: 1.0em;  
+color: navy;
+font-family: arial;
+">
+이메일
+</td></tr>
+<tr><td> <input type=text class="fonts" name=useremail size=50> </td> </tr>
+<tr align=left > <td colspan=5> <input type=submit value=가입하기> </td> </tr>
+</table>
+</form>
+</body>
+</html>

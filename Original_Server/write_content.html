@@ -1,0 +1,30 @@
+<?
+echo $_GET['tb'];
+if(isset($_SESSION['userid']))
+{
+?>
+<form method=POST action=writeok.html enctype=multipart/form-data>
+<input type=hidden name=tb value=<?=$_GET['tb']?>>
+<input type=hidden name=userid value=<?=$_SESSION['userid']?>>
+<input type=hidden name=passwd value=111111>
+<table align=center border=1 cellpadding=10 cellspacing=0 width=450>
+<tr> <td> 제목 </td>  <td> <input type=text name=title size=50> </td> </tr>
+<tr> <td align=center> 파일명 </td>
+     <td> <input type=file name=upfile> </td> </tr>
+<tr>  <td> 내용 </td>
+<td> <textarea name=content cols=60 rows=20></textarea> </td> </tr>
+<tr align=center > <td colspan=5> <input type=submit value=글쓰기> </td> </tr>
+</table>
+</form>
+<?
+} else {
+    echo "<script language=JavaScript>
+          <!--
+              alert('로그인해야 글을 쓸 수 있습니다');
+              history.go(-1);
+          //-->
+          </script>
+         ";
+    exit;
+}
+?>

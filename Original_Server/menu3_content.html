@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<style>
+ input[type=button]{
+    background-color: #0cb7f5;
+    padding: 8px 15px;
+    border-radius: 2px;
+    /* border-bottom: 3px solid #0cb7f5; */
+    color: #FFF;
+    font-weight: 60px;
+    border: 0;
+    border-bottom: 3px solid #049ce4;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: arial;
+    margin: 5px 0 0 0}
+</style>
+</head>
+<body>
+<?php
+$DBHOST="localhost";
+$DBUSER="root";
+$DBPASS="111111";
+$DBNAME = "myhomepage";
+
+// DB 접속 정보
+include "__dbconnect.php";
+$TBNAME = "bbs3";
+
+# DBMS 접속
+#resource mysql_connect(서버명,사용자,비번)
+$connect = mysqli_connect($DBHOST, $DBUSER, $DBPASS, $DBNAME) or die("DBMS에 접속 실패");
+
+mysqli_set_charset($connect, "utf8");
+
+# 쿼리 실행
+$query = "SELECT * FROM $TBNAME ORDER BY no DESC";
+# resource mysqli_query(쿼리문, 연결정보)
+$result = mysqli_query($connect, $query);
+
+# 전체 자료 수
+$number = mysqli_num_rows($result);
+?>
+
+<br>
+<table align=center border=1 cellpadding=5 cellspacing=0 width=500>
+<tr align=center>
+  <td> 번호   </td> <td> 제목 </td> 
+  <td> 작성자 </td> <td> 날짜 </td> <td> 조회수 </td>
+</tr>
+
+<?
+// 전체 자료의 수만큼 반복해서 자료를 출력한다.
+while($number)
+{
+    $row = mysqli_fetch_array($result);
+    # 데이터 가공 및 출력
+    echo "<tr align=center>";
+    echo "<td> " . $number  . "</td>";
+    echo "<td align=left width=260> 
+           <a href=read.html?no=" . $row['no'] . 
+		          "&tb=" . $TBNAME . ">" . $row['title'] . "</a></td>";
+    echo "<td> " . $row['userid']  . "</td>";
+    echo "<td> " . substr($row['date'],5,5)  . "</td>";
+    echo "<td> " . $row['count'] . "</td>";
+    echo "</tr>";
+
+    $number --;
+}
+
+?>
+
+<tr align=center >
+<td colspan=5> <input type="button" value="글쓰기" onClick="location='write.html?tb=<?=$TBNAME?>'"> </td>
+</tr>
+
+</table>
+</body>
+</html>

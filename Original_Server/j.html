@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script type="text/javascript">
+		document.sh.q.value=getElementById('q');
+        var hw = document.getElementById('hw');
+        function search(q){
+		window.open("https://www.google.com/?#q="+q);
+        }
+    </script>
+		<form name="sh" action="http://google.com/search" method="get"> <!-- q는 필수 입력 항목이 아니지만 입력 사항을 검색 할 때 가장 많이 사용되는 이름입니다. 제출 될 때 서버에 전송 된 데이터 이름 / 값 쌍은 q = searchterm이됩니다. -->
+    	<input type="button" name="dd" value="submit" onlick=sh.submit();>
+		<table>
+		<tr><td>
+		<input name="q" type="text" style="width:600px; height:30px;"></td><td>&nbsp;&nbsp;</td><td>
+		<input type=image src="img/search.png" onmouseover="this.src='img/search3.gif'" onmouseout="this.src='img/search.png'" style="width:30px; height:30px;"></td></tr></table>
+</body>
+</html>

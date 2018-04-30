@@ -1,0 +1,249 @@
+<!--
+	FILE TYPE : HTML
+	CREATE BY KTH
+-->
+
+<?php
+session_start();
+?>
+
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+
+<head>
+	<title> KTH HOME </title>
+	<!--
+	-webkit-background-size: 100%; 이미지 크기 조정
+	-->
+<style>
+	#copyright {
+				position: center;
+				font-size: medium;
+				font-weight: bold;
+				margin: 3px;
+				text-align: center;
+	}
+
+
+#topMenu { 
+			height: 30px; /* 메인 메뉴의 높이 */
+			width: 850px; /* 메인 메뉴의 넓이 */
+}
+#topMenu ul {
+/* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */
+			list-style-type: none; /* 메인 메뉴 안의 ul 내부의 목록 표시를 없애줌 */
+			margin: 0px; /* 메인 메뉴 안의 ul의 margin을 없앰 */
+			padding: 0px; /* 메인 메뉴 안의 ul의 padding을 없앰 */
+}
+#topMenu ul li {
+/* 메인 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용(상위/하위메뉴 모두) */
+			color: white; /* 글씨 색을 흰색으로 설정 */
+			background-color: #ff0000; /* 배경 색을 RGB(#ff0000)로 설정 */
+			float: left; /* 왼쪽으로 나열되도록 설정 */
+			line-height: 50px; /* 텍스트 한 줄의 높이를 50px로 설정 */
+			vertical-align: middle; /* 세로 정렬을 가운데로 설정 */
+			text-align: center; /* 텍스트를 가운데로 정렬 */
+			position: relative; /* 해당 li 태그 내부의 top/left 포지션 초기화 */
+			font-size: 25px;
+}
+.menuLink, .submenuLink { /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */
+			text-decoration:none; /* a 태그의 꾸밈 효과 제거 */
+			display: block; /* a 태그의 클릭 범위를 넓힘 */
+			width: 150px; /* 기본 넓이를 150px로 설정 */
+			// margin: 6px; /* 여백을 6px 크기로 설정 */
+			font-size: 30px; /* 폰트 사이즈를 12px로 설정 */
+			//font-weight: bold; /* 폰트를 굵게 설정 */
+			font-family: "Trebuchet MS", Dotum; /* 기본 폰트를 영어/한글 순서대로 설정 */
+}
+.menuLink { /* 상위 메뉴의 글씨색을 흰색으로 설정 */
+			color: white;
+}
+.topMenuLi:hover .menuLink { /* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */
+			color: white; /* 글씨 색 흰색 */
+			background-color: #0000ff; /* 배경색을 파란색 으로 설정 */
+}
+.submenuLink { /* 하위 메뉴의 a 태그 스타일 설정 */
+			color: #2d2d2d; /* 글씨 색을 RGB(2D2D2D)로 설정 */
+			background-color: white; /* 배경색을 흰색으로 설정 */
+			border: solid 1px black; /* 테두리를 설정 */
+			margin-top: -1px; /* 위 칸의 하단 테두리와 아래칸의 상단 테두리가 겹쳐지도록 설덩 */
+}
+.longLink { /* 좀 더 긴 메뉴 스타일 설정 */
+			width: 190px; /* 넓이는 190px로 설정 */
+}
+.submenu { /* 하위 메뉴 스타일 설정 */
+			position: absolute; /* html의 flow에 영향을 미치지 않게 absolute 설정 */
+			height: 0px; /* 초기 높이는 0px로 설정 */
+			overflow: hidden; /* 실 내용이 높이보다 커지면 해당 내용 감춤 */
+			transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(기본) */
+			-webkit-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 크롬/사파라ㅣ) */
+			-moz-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 파폭) */
+			-o-transition: height .2s; /* height를 변화 시켰을 때 0.2초간 변화 되도록 설정(구버전 오페라) */
+}
+
+.topMenuLi:hover .submenu { /* 상위 메뉴에 마우스 모버한 경우 그 안의 하위 메뉴 스타일 설정 */
+			height: 300px; /* 높이를 300px로 설정 */
+}
+.submenuLink:hover { /* 하위 메뉴의 a 태그의 마우스 오버 스타일 설정 */
+			color: red; /* 글씨색을 빨간색으로 설정 */
+			background-color: #dddddd; /* 배경을 RGB(DDDDDD)로 설정 */
+}
+
+.bg {
+	color: grey;
+}
+
+</style>
+<style type="css/text">
+	h3.title {text-shadow:1px 1px 2px; color: white; padding-top:107px; text-align:center;}
+</style>
+<!--
+	text-shadow 텍스트에 그림자효과.
+	#ff000000 색상 빨간색.
+	text-align:center 텍스트 중앙 정렬.
+	padding-top 상단여백.
+	color:white 색상 흰색.
+	사용법 <h1 class="title">
+	-->
+</head>
+
+<body>
+	<div id="top">
+	<!--<img src=img/logo/mainlogo.jpg> -->
+	</div>
+	<div id="middle">
+	<p><table border=1
+			  height=800 
+			  width=1800
+			  cellpadding=5
+			  cellspacing=0
+			  bordercolor=#00bfff
+			  align=center></p>
+   <tr height=100>
+     
+     <td align=left colspan=3> 
+	 <!-- 메뉴가 들어가는 부분 -->
+	  <table border=0> 
+	  <tr> <td> <img src=img/logo/mainlogo.jpg width=100 height=100> </td> 
+		<td><nav id="topMenu" >
+		<ul>
+		<li class="topMenuLi">
+		<a class="menuLink" href="index.html">홈으로</a></li>
+		<li>|</li>
+		<li class="topMenuLi">
+		<a class="menuLink" href=menu.html>메뉴</a>
+		<ul class="submenu">
+			<li><a class="submenuLink longLink" href=menu1.html>메뉴1</a></li>
+			<li><a class="submenuLink longLink" href=menu2.html>메뉴2</a></li>
+			<li><a class="submenuLink longLink" href=menu3.html>메뉴3</a></li>
+			<li><a class="submenuLink longLink" href=menu4.html>메뉴4</a></li>
+			<li><a class="submenuLink longLink" href=menu5.html>메뉴5</a></li> </ul> </li>
+			<li>|</li>
+		<li class="topMenuLi">
+                 <?
+                 if(isset($_SESSION['userid']))
+                     echo "<li><a class=menuLink href=/logout.html>로그아웃</a></li>";
+                 else
+                     echo "<li><a class=menuLink href=/login.html>로그인</a></li>";
+                 ?>
+		</ul></li>
+		</nav></td>
+	   
+	  </tr>
+	  </table>
+
+  	 <!-- 메뉴가 들어가는 부분 -->
+
+	 </td>
+    </tr>
+
+		<tr height=100>
+		<td align=center colspan=3>
+		<table border=0>
+		<tr> <td>
+				<div class="bg">
+				<center><h3 class="title"><span style="color:blue">구글 검색 엔진</span></center>
+				<form action="http://google.com/search" method="get"> <!-- q는 필수 입력 항목이 아니지만 입력 사항을 검색 할 때 가장 많이 사용되는 이름입니다. 제출 될 때 서버에 전송 된 데이터 이름 / 값 쌍은 q = searchterm이됩니다. -->
+				<table>
+				<tr><td>
+				<input name="q" type="text" style="width:600px; height:30px;"></td><td>&nbsp;&nbsp;</td><td>
+				<input type=image src="img/search.png" onmouseover="this.src='img/search3.gif'" onmouseout="this.src='img/search.png'" style="width:30px; height:30px;"></td></tr></table>
+				<!--
+				onmouseover는 마우스를 올렸을때 나타낼 이미지를 this.src에 경로를 지정해주는것입니다.
+				onmouseout은 마우스를 다시 땟을때 나타낼 이미지를 this.src에 경로를 지정해주는것입니다.
+				-->
+			</form>
+			</td>
+			</div>
+		</tr>
+		</table>
+	 </td>
+    </tr>
+   <tr>
+	 <td width=250> <? include("login_content.html"); ?> </td>
+     <!-- <td width=200> 로그인 부분 </td> -->
+     <td> 
+	 <?php
+  	 $phpself_page = $_SERVER['PHP_SELF'];
+     $requesturi_page = $_SERVER['REQUEST_URI'];
+
+	 if($requesturi_page == "/index.html") // 메인페이지
+	     echo "index_content.html";
+	 else if($phpself_page == "/menu.html")  // 메뉴 리스트
+		 include("menu_content.html");
+	 else if($phpself_page == "/menu1.html") // 메뉴1
+	     include("menu1_content.html");
+	 else if($phpself_page == "/menu2.html") // 메뉴2
+	     include("menu2_content.html");
+	 else if($phpself_page == "/menu3.html") // 메뉴3
+	     include("menu3_content.html");
+	 else if($phpself_page == "/menu4.html") // 메뉴4
+	     include("menu4_content.html");
+	 else if($phpself_page == "/menu5.html") // 메뉴5
+	     include("menu5_content.html");
+	 else if($phpself_page == "/login.html")   // 이 부분이 로그인 부분
+	     include("login_content.html");
+	 else if($phpself_page == "/write.html")  // 글쓰기 추가
+	     include("write_content.html");
+   	 else if($phpself_page == "/read.html")
+         include("read_content.html");
+	 else if($phpself_page == "/edit.html") // 글수정 추가
+		 include("edit_content.html");
+   	 else if($phpself_page == "/register.html")
+         include("register_content.html");
+   	 else if($phpself_page == "/adm_memlist.html")
+         include("admin_member_list.html");
+   	 else if($phpself_page == "/adm_memedit.html")
+         include("admin_member_edit.html");
+	 ?>
+	 </td>
+	
+   	 <td width=200> 
+	  <table cellspacing=5>
+	   <tr><td>
+	   <a href=http://www.daum.net target=new1><img src=img/logo/daum.png border=0 width=250 height=100></a>
+	   </td></tr>
+  	   <tr><td>
+	   <a href=http://www.boannews.com target=new2><img src=img/logo/boannews.gif border=0 width=250 height=100></a>
+	   </td></tr>
+	   <tr><td>
+	   <a href=http://www.iei.or.kr target=new3><img src=img/logo/khacademy.jpg border=0 width=250 height=100></a>
+	   </td></tr>
+	   <tr><td>
+	   <a href=http://www.naver.com target=new4><img src=img/logo/naver_logo.gif border=0 width=250 height=100></a>
+	   </td></tr>
+	   <tr><td>
+	   <a href=http://www.google.com target=new4><img src=img/logo/google_logo.gif border=0 width=250 height=100></a>
+	   </td></tr>
+	  </table>
+     </td>
+   </tr>
+	</table>
+	</div>
+	<div id="copyright">
+		Copyright &#169; KimTaekHan
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		div{
+			background-color: black; // div태크의 배경색상을 검은색으로 설정한다.
+			color:white; // 색상 흰색
+			padding:10px; // 여백은 10px로 설정.
+			width:100px; // width 100px
+			height:50px; // height 50px
+			transition:height 1s; // height에 대해서 1초동안 장면 전환된다.
+			transition-timing-function: linear; // element가 늘어나는 순간은 linear 속도로 설정한다.
+		}
+		div:hover{
+			height:400px;
+		}
+	</style>
+</head>
+<body onload="document.querySelector('body').style.backgroundColor='white';">
+	<div>
+		TRANSITION
+	</div>
+</body>
+</html>
