@@ -88,65 +88,6 @@ create table member (
  date datetime
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-create table bbs1 (
-no       int not null auto_increment primary key comment 'Article number',
-userid   varchar(30) not null comment 'Writer', 
-title    varchar(50) not null comment 'Title',
-passwd   varchar(41) not null comment 'Writing password', 
-contents text not null comment 'Content',
-date     datetime  not null comment 'Writing Time',
-ipaddr   varchar(15) not null comment 'Written IP address',
-count    int not null comment 'View Article ',
-uploadfile varchar(100) comment 'Upload file'
-) ENGINE=MyISAM DEFAULT CHARSET utf8;
-
-create table bbs2 (
-no       int not null auto_increment primary key comment 'Article number',
-userid   varchar(30) not null comment 'Writer', 
-title    varchar(50) not null comment 'Title',
-passwd   varchar(41) not null comment 'Writing password', 
-contents text not null comment 'Content',
-date     datetime  not null comment 'Writing Time',
-ipaddr   varchar(15) not null comment 'Written IP address',
-count    int not null comment 'View Article ',
-uploadfile varchar(100) comment 'Upload file'
-) ENGINE=MyISAM DEFAULT CHARSET utf8;
-
-create table bbs3 (
-no       int not null auto_increment primary key comment 'Article number',
-userid   varchar(30) not null comment 'Writer', 
-title    varchar(50) not null comment 'Title',
-passwd   varchar(41) not null comment 'Writing passwor', 
-contents text not null comment 'Content',
-date     datetime  not null comment 'Writing Time',
-ipaddr   varchar(15) not null comment 'Written IP address',
-count    int not null comment 'View Article ',
-uploadfile varchar(100) comment 'Upload file'
-) ENGINE=MyISAM DEFAULT CHARSET utf8;
-
-create table bbs4 (
-no       int not null auto_increment primary key comment 'Article number',
-userid   varchar(30) not null comment 'Writer', 
-title    varchar(50) not null comment 'Title',
-passwd   varchar(41) not null comment 'Writing passwor', 
-contents text not null comment 'Content',
-date     datetime  not null comment 'Writing Time',
-ipaddr   varchar(15) not null comment 'Written IP address',
-count    int not null comment 'View Article ',
-uploadfile varchar(100) comment 'Upload file'
-) ENGINE=MyISAM DEFAULT CHARSET utf8;
-
-create table bbs5 (
-no       int not null auto_increment primary key comment 'Article number',
-userid   varchar(30) not null comment 'Writer', 
-title    varchar(50) not null comment 'Title',
-passwd   varchar(41) not null comment 'Writing passwor', 
-contents text not null comment 'Content',
-date     datetime  not null comment 'Writing Time',
-ipaddr   varchar(15) not null comment 'Written IP address',
-count    int not null comment 'View Article ',
-uploadfile varchar(100) comment 'Upload file'
-) ENGINE=MyISAM DEFAULT CHARSET utf8;
 #############################################################
 
 #################### 3. Hacker Server DB Setup ######################
