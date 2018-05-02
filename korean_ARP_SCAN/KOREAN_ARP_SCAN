@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import socket, subprocess, sys
+from logging import getLogger, ERROR # Import Logging Things (로깅기능을 수행하기 위해 모듈을 불러온다.)
+getLogger("scapy.runtime").setLevel(ERROR) # Get Rid if IPv6 Warning (IPv6에 대한 경고를 없앤다.)
+from scapy.all import * # 모든 scapy 모듈을 불러온다.
+import time # sleep 적용하기 위해 time 모듈을 불러온다.
+from termcolor import colored # print 에 컬러 적용을 위해 모듈을 불러온다.
+
+subprocess.call('clear',shell=True) # 콘솔명령어를 적용함
+print """
+\033[1;34m
+                      $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                     /  /################################################################\  \
+                    /  /        ._________     _  ___________  __________  ____           \  \
+                   /  /         |   |/  /     |__   __|       |   |__|  |                  \  \
+                  /  /          |   /  /        |\ /|         |   /__\  |                   \  \
+                  \  \          |   \  \        |/ \|         |   /__ \ |                   /  /
+                   \  \         | __|\__\       |\_/|         /__/|  |_\|                  /  /
+                    \  \        /\      \\/      //    \/        //      /\  \\/          /  /
+                     \  \$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$/  /
+                      ######################################################################
+\033[1;m
+                                                \033[1;41mMAKE BY KIMTAEKHAN\033[1;m
+
+
+        \033[1;44m                                      [!] 경고 !!!!!
+                                  함부로 외부에다가 공격시도 하지마세요 !!!!!\033[1;m
+
+"""
+############ 시간 설정 ############
+time_counter=1.00 # 시간 설정 1초
+###################################
+
+################## 공격 설정  ##################
+try:
+        target = raw_input("[*] 공격 목표의 주소를 입력하세요 : ") # 공격 목표의 주소입력.
+except KeyboardInterrupt: #사용자가 프로그램을 종료하고자 할때 키보드의 입력에 따른 메세지를 출력.
+
+       print "\n[!] 공격자의 명령에 의해 프로그램을 종료합니다.\n"
+       print "[!] 종료중"
+       print "."
+       time.sleep(time_counter)
+       print "."
+       time.sleep(time_counter)
+       print "."
+       time.sleep(time_counter)
+       print "\n[!] 완료 !!"
+       sys.exit(1)
+
+conf.verb = 0
+ans, unans = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=target"/24"),timeout=2)
+print colored('####################### 찾은 MAC 주소 #######################', 'red')
+ans.summary(lambda (s,r): r.sprintf("\033[1;44m%Ether.src% %ARP.psrc%\033[1;m") )
+print colored("#############################################################", "red")
